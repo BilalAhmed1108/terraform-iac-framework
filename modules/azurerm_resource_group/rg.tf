@@ -6,3 +6,4 @@ resource azurerm_resource_group "rg" {
   tags=lookup(each.value, "tags", {})
 }
 
+
