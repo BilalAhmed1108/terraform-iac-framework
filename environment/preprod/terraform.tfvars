@@ -370,3 +370,85 @@ kvsec = {
     kvid="keyvaultbilalcorp"
 }
 }
+
+# SQL Server variable values
+sqlserver = {
+  sqlserver1 = {
+    name        = "bilalcorp-sqlserver-1"
+    location    = "centralindia"
+    resource_group_name = "BilalCorp-rg-1"
+    version     = "12.0"
+    minimum_tls_version = "1.2"
+    sql_username = "sql_server_username"
+    sql_password = "sql_server_password"
+    #administrator_login_password_wo = "sql_server_password"
+    connection_policy = "Default"
+    express_vulnerability_assessment_enabled = true
+    #transparent_data_encryption_key_vault_key_id = ""
+    public_network_access_enabled = true
+    outbound_traffic_enabled = false    
+    tags = {
+      team_size = "4"
+      team_lead = "Mr. X"
+    }
+  }
+}
+
+keyvaultid = {
+ keyvaultbilalcorp = {
+    r_g_n = "BilalCorp-rg-1"
+    name  = "keyvaultbilalcorp"
+  }
+}
+
+
+# SQLServer values
+database = {
+  "bilalcorp-sqlserver-1" = {
+  name= "bilalcorpDB-1"
+#     auto_pause_delay_in_minutes = optional(string)
+#     collation    = optional(string)
+#   license_type = optional(string)
+#   max_size_gb  = optional(string)
+#   sku_name     = lookup(each.value, "sku_name", "S0" )
+#   enclave_type=   lookup(each.value, "enclave_type", "Default")
+# create_mode= optional(string)  
+# creation_source_database_id = optional(string)   
+# elastic_pool_id = optional(string)  
+# geo_backup_enabled= optional(string)
+# maintenance_configuration_name = optional(string)
+# ledger_enabled = optional(bool)  
+#  min_capacity = optional(string)
+#  restore_point_in_time = optional(string)
+#  recover_database_id = optional(string)
+#  recovery_point_id = optional(string)
+#  restore_dropped_database_id=   optional(string)
+#  restore_long_term_retention_backup_id = optional(string)
+#  read_replica_count = optional(string)
+#  read_scale= optional(string)
+# sample_name = optional(string)
+# storage_account_type = optional(string)
+#  transparent_data_encryption_enabled = optional(bool)
+#  transparent_data_encryption_key_vault_key_id= optional(string)
+#  transparent_data_encryption_key_automatic_rotation_enabled=optional(bool)
+#  zone_redundant = optional(bool)
+#  secondary_type =optional(string)
+
+  tags = {
+    team_size = "4"
+      team_lead = "Mr. X"
+  }
+  }
+}
+
+sqlserverdata = {
+  bilalcorp-sqlserver-1= {
+name = "bilalcorp-sqlserver-1"
+ r_g_n = "BilalCorp-rg-1"
+  }
+ 
+}
+
+
+
+

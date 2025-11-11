@@ -55,3 +55,22 @@ module "azurerm_keyvault" {
   kv     = var.kv
   kvsec = var.kvsec
 }
+
+# Calling SQLServer module         1 SQL Server
+module "azurerm_mysqlserver" {
+  depends_on = [module.azurerm_resource_group, module.azurerm_keyvault]
+  source     = "../../modules/azurerm_mysqlserver"
+  sqlserver  = var.sqlserver
+  keyvaultid = var.keyvaultid
+  kvsec      = var.kvsec
+}
+
+
+# Call sqldatabase module
+module "azurerm_database" {
+  depends_on = [module.azurerm_mysqlserver]
+  source     = "../../modules/azurerm_database"
+  database   = var.database
+  sqlserverdata = var.sqlserverdata
+}
+
