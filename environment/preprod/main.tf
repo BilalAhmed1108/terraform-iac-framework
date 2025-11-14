@@ -50,10 +50,10 @@ module "azurerm_network_interface_card" {
 
 # Calling Key Vault module                1 key vault with 6 secrets (2 vm- username/password, 1 sqlserver - username/password)
 module "azurerm_keyvault" {
-  depends_on = [ module.azurerm_resource_group ]
-  source = "../../modules/azurerm_keyvault"
-  kv     = var.kv
-  kvsec = var.kvsec
+  depends_on = [module.azurerm_resource_group]
+  source     = "../../modules/azurerm_keyvault"
+  kv         = var.kv
+  kvsec      = var.kvsec
 }
 
 # Calling SQLServer module         1 SQL Server
@@ -68,9 +68,21 @@ module "azurerm_mysqlserver" {
 
 # Call sqldatabase module
 module "azurerm_database" {
-  depends_on = [module.azurerm_mysqlserver]
-  source     = "../../modules/azurerm_database"
-  database   = var.database
+  depends_on    = [module.azurerm_mysqlserver]
+  source        = "../../modules/azurerm_database"
+  database      = var.database
   sqlserverdata = var.sqlserverdata
 }
+
+
+# Calling Virtual machine module
+
+# module "azurerm_virtual_machine" {
+#   depends_on = [module.azurerm_keyvault, module.azurerm_network, module.azurerm_public_ip]
+#   source     = "../../modules/azurerm_virtual_machines"
+#   vms        = var.vms
+#   nicdata    = var.nicdata
+#   keyvaultid = var.keyvaultid
+#   kvsec      = var.kvsec
+# }
 
