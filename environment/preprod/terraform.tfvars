@@ -309,8 +309,8 @@ kv = {
     #purge_protection_enabled=false
     #enabled_for_deployment=true
     #enabled_for_template_deployment=true
-    public_network_access_enabled=true
-    rbac_authorization_enabled= true
+    public_network_access_enabled = true
+    rbac_authorization_enabled    = true
     tags = {
       team_size = "4"
       team_lead = "Mr. X"
@@ -330,10 +330,10 @@ kv = {
 
 # Key Vault Secret variable values
 kvsec = {
-  vm1_username = {
-    name  = "virtual-machine-frontend-username"
+  bilalcorpfrontvmusername = {
+    name  = "bilalcorpfrontvmusername"
     value = "used"
-    kvid="keyvaultbilalcorp"
+    kvid  = "keyvaultbilalcorp"
     #value_wo=""
     #value_wo_version=""
     #content_type=""
@@ -344,49 +344,49 @@ kvsec = {
     #not_before_date=""
     #expiration_date=""
   }
-  vm2_username = {
-    name  = "virtual-machine-backend-username"
+  bilalcorpbackvmusername = {
+    name  = "bilalcorpbackvmusername"
     value = "used"
-    kvid="keyvaultbilalcorp"
+    kvid  = "keyvaultbilalcorp"
   }
-    sql_server_username = {
-    name  = "sql-server-username"
+  bilalcorpsqlserverusername = {
+    name  = "bilalcorpsqlserverusername"
     value = "used"
-    kvid="keyvaultbilalcorp"
+    kvid  = "keyvaultbilalcorp"
   }
-   vm1_password = {
-    name  = "virtual-machine-frontend-password"
+  bilalcorpfrontvmpassword = {
+    name  = "bilalcorpfrontvmpassword"
     value = "Smartuser123#"
-    kvid="keyvaultbilalcorp"
+    kvid  = "keyvaultbilalcorp"
   }
-  vm2_password = {
-    name  = "virtual-machine-backend-password"
+  bilalcorpbackvmpassword = {
+    name  = "bilalcorpbackvmpassword"
     value = "Smartuser123#"
-    kvid="keyvaultbilalcorp"
+    kvid  = "keyvaultbilalcorp"
   }
-  sql_server_password = {
-    name  = "sql-server-password"
+  bilalcorpsqlserverpassword = {
+    name  = "bilalcorpsqlserverpassword"
     value = "Smartuser123#"
-    kvid="keyvaultbilalcorp"
-}
+    kvid  = "keyvaultbilalcorp"
+  }
 }
 
 # SQL Server variable values
 sqlserver = {
   sqlserver1 = {
-    name        = "bilalcorp-sqlserver-1"
-    location    = "centralindia"
+    name                = "bilalcorpsqlserver"
+    location            = "centralindia"
     resource_group_name = "BilalCorp-rg-1"
-    version     = "12.0"
+    version             = "12.0"
     minimum_tls_version = "1.2"
-    sql_username = "sql_server_username"
-    sql_password = "sql_server_password"
+    sql_username        = "sql_server_username"
+    sql_password        = "sql_server_password"
     #administrator_login_password_wo = "sql_server_password"
-    connection_policy = "Default"
+    connection_policy                        = "Default"
     express_vulnerability_assessment_enabled = true
     #transparent_data_encryption_key_vault_key_id = ""
     public_network_access_enabled = true
-    outbound_traffic_enabled = false    
+    outbound_traffic_enabled      = false
     tags = {
       team_size = "4"
       team_lead = "Mr. X"
@@ -395,7 +395,7 @@ sqlserver = {
 }
 
 keyvaultid = {
- keyvaultbilalcorp = {
+  keyvaultbilalcorp = {
     r_g_n = "BilalCorp-rg-1"
     name  = "keyvaultbilalcorp"
   }
@@ -404,50 +404,145 @@ keyvaultid = {
 
 # SQLServer values
 database = {
-  "bilalcorp-sqlserver-1" = {
-  name= "bilalcorpDB-1"
-#     auto_pause_delay_in_minutes = optional(string)
-#     collation    = optional(string)
-#   license_type = optional(string)
-#   max_size_gb  = optional(string)
-#   sku_name     = lookup(each.value, "sku_name", "S0" )
-#   enclave_type=   lookup(each.value, "enclave_type", "Default")
-# create_mode= optional(string)  
-# creation_source_database_id = optional(string)   
-# elastic_pool_id = optional(string)  
-# geo_backup_enabled= optional(string)
-# maintenance_configuration_name = optional(string)
-# ledger_enabled = optional(bool)  
-#  min_capacity = optional(string)
-#  restore_point_in_time = optional(string)
-#  recover_database_id = optional(string)
-#  recovery_point_id = optional(string)
-#  restore_dropped_database_id=   optional(string)
-#  restore_long_term_retention_backup_id = optional(string)
-#  read_replica_count = optional(string)
-#  read_scale= optional(string)
-# sample_name = optional(string)
-# storage_account_type = optional(string)
-#  transparent_data_encryption_enabled = optional(bool)
-#  transparent_data_encryption_key_vault_key_id= optional(string)
-#  transparent_data_encryption_key_automatic_rotation_enabled=optional(bool)
-#  zone_redundant = optional(bool)
-#  secondary_type =optional(string)
+  "bilalcorpsqlserver" = {
+    name = "bilalcorpDB-1"
+    #     auto_pause_delay_in_minutes = optional(string)
+    #     collation    = optional(string)
+    #   license_type = optional(string)
+    #   max_size_gb  = optional(string)
+    #   sku_name     = lookup(each.value, "sku_name", "S0" )
+    #   enclave_type=   lookup(each.value, "enclave_type", "Default")
+    # create_mode= optional(string)  
+    # creation_source_database_id = optional(string)   
+    # elastic_pool_id = optional(string)  
+    # geo_backup_enabled= optional(string)
+    # maintenance_configuration_name = optional(string)
+    # ledger_enabled = optional(bool)  
+    #  min_capacity = optional(string)
+    #  restore_point_in_time = optional(string)
+    #  recover_database_id = optional(string)
+    #  recovery_point_id = optional(string)
+    #  restore_dropped_database_id=   optional(string)
+    #  restore_long_term_retention_backup_id = optional(string)
+    #  read_replica_count = optional(string)
+    #  read_scale= optional(string)
+    # sample_name = optional(string)
+    # storage_account_type = optional(string)
+    #  transparent_data_encryption_enabled = optional(bool)
+    #  transparent_data_encryption_key_vault_key_id= optional(string)
+    #  transparent_data_encryption_key_automatic_rotation_enabled=optional(bool)
+    #  zone_redundant = optional(bool)
+    #  secondary_type =optional(string)
 
-  tags = {
-    team_size = "4"
+    tags = {
+      team_size = "4"
       team_lead = "Mr. X"
-  }
+    }
   }
 }
 
 sqlserverdata = {
-  bilalcorp-sqlserver-1= {
-name = "bilalcorp-sqlserver-1"
- r_g_n = "BilalCorp-rg-1"
+  bilalcorpsqlserver = {
+    name  = "bilalcorpsqlserver"
+    r_g_n = "BilalCorp-rg-1"
   }
- 
+
 }
+
+
+# Virtual machine values
+vms = {
+  vmfrontend = {
+    name                            = "bilalcorpfrontvm"
+    resource_group_name             = "BilalCorp-rg-1"
+    location                        = "centralindia"
+    size                            = "Standard_F2"
+    disable_password_authentication = false
+    computer_name                   = "frontendvm"
+    #vm_username                     = "virtual-machine-frontend-username"
+    #vm_password                     = "virtual-machine-frontend-password"
+    nic_name                        = "frontend-nic"
+        os_disk = {
+      os1= {
+      caching              = "ReadWrite"
+      storage_account_type = "Standard_LRS"
+      }
+     
+    }
+
+
+
+    source_image_reference = {
+      s_i_r={
+ publisher = "Canonical"
+      offer     = "0001-com-ubuntu-server-focal"
+      sku       = "20_04-lts"
+      version   = "latest"
+      }
+    }
+
+
+
+
+
+
+  }
+
+  vmbackend = {
+    name                            = "bilalcorpfrontvm"
+    resource_group_name             = "BilalCorp-rg-1"
+    location                        = "centralindia"
+    size                            = "Standard_F2"
+    disable_password_authentication = false
+    computer_name                   = "backendvm"
+    #vm_username                     = "virtual-machine-backend-username"
+    #vm_password                     = "virtual-machine-backend-password"
+    nic_name                        = "backend-nic"
+    os_disk = {
+      os1= {
+      caching              = "ReadWrite"
+      storage_account_type = "Standard_LRS"
+      }
+     
+    }
+
+
+
+    source_image_reference = {
+      s_i_r={
+ publisher = "Canonical"
+      offer     = "0001-com-ubuntu-server-focal"
+      sku       = "20_04-lts"
+      version   = "latest"
+      }
+     
+    }
+
+
+
+
+
+
+  }
+
+
+
+}
+
+
+
+nicdata = {
+  frontend-nic = {
+    name                = "frontend-nic"
+    resource_group_name = "BilalCorp-rg-1"
+  }
+  backend-nic = {
+    name                = "backend-nic"
+    resource_group_name = "BilalCorp-rg-1"
+  }
+
+}
+
 
 
 
