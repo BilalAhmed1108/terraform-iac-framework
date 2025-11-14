@@ -31,8 +31,8 @@ public_network_access_enabled =lookup(each.value, "public_network_access_enabled
 
 
 #resource "azurerm_role_assignment" "admin" {
- #depends_on = [ azurerm_key_vault.kv ]
- #3 for_each = var.kv
+ # depends_on = [ azurerm_key_vault.kv ]
+  #for_each = var.kv
   #scope                = azurerm_key_vault.kv[each.key].id
   #role_definition_name = each.value.role_definition_name
   #principal_id         = data.azurerm_client_config.current.object_id

@@ -215,7 +215,7 @@ variable "kv" {
     name                            = string
     location                        = string
     resource_group_name             = string
-    enabled_for_disk_encryption     = optional(bool)                  #true
+    enabled_for_disk_encryption     = optional(bool)        #true
     soft_delete_retention_days      = optional(number)      #
     purge_protection_enabled        = optional(bool)        # false
     enabled_for_deployment          = optional(bool)        # true
@@ -231,7 +231,7 @@ variable "kv" {
       virtual_network_subnet_ids = optional(list(string)) # []
     }))
 
-    role_definition_name           = string
+    role_definition_name = string
   }))
 }
 
@@ -239,101 +239,180 @@ variable "kv" {
 # Key Vault Secret variable
 variable "kvsec" {
   type = map(object({
-    name         = string
-    value        = optional(string)
-    value_wo     = optional(string)
+    name             = string
+    value            = optional(string)
+    value_wo         = optional(string)
     value_wo_version = optional(string)
-    content_type = optional(string)
-    tags         = optional(map(string))
-    not_before_date = optional(string)
-    expiration_date = optional(string)
-    kvid                           = string
+    content_type     = optional(string)
+    tags             = optional(map(string))
+    not_before_date  = optional(string)
+    expiration_date  = optional(string)
+    kvid             = string
   }))
 }
 
 variable "sqlserver" {
-    type =map(object({
-        name                         = string
-        resource_group_name          = string
-        location                     = string
-        version                      = string
-        sql_password                  = string
-        sql_username                  = string
-        minimum_tls_version          = optional(string)
-        administrator_login_password_wo = optional(string)
-        administrator_login_password_wo_version = optional(string)
-        connection_policy            = optional(string)
-        express_vulnerability_assessment_enabled = optional(bool)
-        transparent_data_encryption_key_vault_key_id = optional(string)
-        public_network_access_enabled = optional(bool)
-        outbound_traffic_enabled     = optional(bool)
-        primary_user_assigned_identity_id = optional(string)
-        identity = optional(object({
-            type = string
-            identity_ids = optional(list(string))
-        }))
-        azuread_administrator = optional(object({
-            login_username = string
-            object_id      = string
-            tenant_id      = optional(string)
-            azuread_authentication_only = optional(bool)
-        }))
-        tags = optional(map(string))
+  type = map(object({
+    name                                         = string
+    resource_group_name                          = string
+    location                                     = string
+    version                                      = string
+    sql_password                                 = string
+    sql_username                                 = string
+    minimum_tls_version                          = optional(string)
+    administrator_login_password_wo              = optional(string)
+    administrator_login_password_wo_version      = optional(string)
+    connection_policy                            = optional(string)
+    express_vulnerability_assessment_enabled     = optional(bool)
+    transparent_data_encryption_key_vault_key_id = optional(string)
+    public_network_access_enabled                = optional(bool)
+    outbound_traffic_enabled                     = optional(bool)
+    primary_user_assigned_identity_id            = optional(string)
+    identity = optional(object({
+      type         = string
+      identity_ids = optional(list(string))
     }))
-  
+    azuread_administrator = optional(object({
+      login_username              = string
+      object_id                   = string
+      tenant_id                   = optional(string)
+      azuread_authentication_only = optional(bool)
+    }))
+    tags = optional(map(string))
+  }))
+
 }
 
 variable "keyvaultid" {
-    type = map(object({
-        r_g_n = string
-        name  = string
-    }))
-  
+  type = map(object({
+    r_g_n = string
+    name  = string
+  }))
+
 }
 
 
 # SQLServer variable
 variable "database" {
   type = map(object({
-    name= optional(string)
-    auto_pause_delay_in_minutes = optional(string)
-    collation    = optional(string)
-  license_type = optional(string)
-  max_size_gb  = optional(string)
-  sku_name     = optional(string)
-  enclave_type=   optional(string)
-create_mode= optional(string)  
-creation_source_database_id = optional(string)   
-elastic_pool_id = optional(string)  
-geo_backup_enabled= optional(string)
-maintenance_configuration_name = optional(string)
-ledger_enabled = optional(bool)  
- min_capacity = optional(string)
- restore_point_in_time = optional(string)
- recover_database_id = optional(string)
- recovery_point_id = optional(string)
- restore_dropped_database_id=   optional(string)
- restore_long_term_retention_backup_id = optional(string)
- read_replica_count = optional(string)
- read_scale= optional(string)
-sample_name = optional(string)
-storage_account_type = optional(string)
- transparent_data_encryption_enabled = optional(bool)
- transparent_data_encryption_key_vault_key_id= optional(string)
- transparent_data_encryption_key_automatic_rotation_enabled=optional(bool)
- zone_redundant = optional(bool)
- secondary_type =optional(string)
+    name                                                       = optional(string)
+    auto_pause_delay_in_minutes                                = optional(string)
+    collation                                                  = optional(string)
+    license_type                                               = optional(string)
+    max_size_gb                                                = optional(string)
+    sku_name                                                   = optional(string)
+    enclave_type                                               = optional(string)
+    create_mode                                                = optional(string)
+    creation_source_database_id                                = optional(string)
+    elastic_pool_id                                            = optional(string)
+    geo_backup_enabled                                         = optional(string)
+    maintenance_configuration_name                             = optional(string)
+    ledger_enabled                                             = optional(bool)
+    min_capacity                                               = optional(string)
+    restore_point_in_time                                      = optional(string)
+    recover_database_id                                        = optional(string)
+    recovery_point_id                                          = optional(string)
+    restore_dropped_database_id                                = optional(string)
+    restore_long_term_retention_backup_id                      = optional(string)
+    read_replica_count                                         = optional(string)
+    read_scale                                                 = optional(string)
+    sample_name                                                = optional(string)
+    storage_account_type                                       = optional(string)
+    transparent_data_encryption_enabled                        = optional(bool)
+    transparent_data_encryption_key_vault_key_id               = optional(string)
+    transparent_data_encryption_key_automatic_rotation_enabled = optional(bool)
+    zone_redundant                                             = optional(bool)
+    secondary_type                                             = optional(string)
 
-  tags = optional(map(string))
+    tags = optional(map(string))
   }))
 }
 
 variable "sqlserverdata" {
   type = map(object({
-    name = string
-    r_g_n=string
+    name  = string
+    r_g_n = string
   }))
 }
+
+# Virtual machine variable
+variable "vms" {
+  type = map(object({
+    name                                                   = string
+    resource_group_name                                    = string
+    location                                               = string
+    size                                                   = string #"Standard_F2"
+    disable_password_authentication                        = optional(bool, false)
+    #vm_username= string
+    #vm_password= string
+    allow_extension_operations                             = optional(bool, true)  #true
+    bypass_platform_safety_checks_on_user_schedule_enabled = optional(bool, false) #false
+    availability_set_id                                    = optional(string)
+    #patch_assessment_mode=optional(string)
+    computer_name                                          = optional(string)
+    custom_data                                            = optional(string)
+    dedicated_host_id                                      = optional(string)
+    dedicated_host_group_id                                = optional(string)
+    disk_controller_type                                   = optional(string)
+    edge_zone                                              = optional(string)
+    encryption_at_host_enabled                             = optional(string)
+    eviction_policy                                        = optional(string)
+    extensions_time_budget                                 = optional(string)
+    #patch_assessment_mode                                  = optional(string)
+    #patch_mode                                             = optional(string)
+    max_bid_price                                          = optional(string)
+    platform_fault_domain                                  = optional(number)
+    priority                                               = optional(string)
+    provision_vm_agent                                     = optional(string)
+    proximity_placement_group_id                           = optional(string)
+    #reboot_setting                                         = optional(string)
+    secure_boot_enabled                                    = optional(string)
+    source_image_id                                        = optional(string)
+    os_managed_disk_id                                     = optional(string)
+    user_data                                              = optional(string)
+    vtpm_enabled                                           = optional(string)
+    virtual_machine_scale_set_id                           = optional(string)
+    zone                                                   = optional(string)
+    #source_image_reference =optional(string)
+    capacity_reservation_group_id = optional(string)
+    admin_ssh_keys                = optional(map(string))
+    licence_type                  = optional(string)
+nic_name=string
+    os_disk = map(object({
+      caching              = string
+      storage_account_type = string
+    }))
+
+    source_image_reference = map(object({
+      publisher = string
+      offer     = string
+      sku       = string
+      version   = string
+
+    }))
+
+    additional_capabilities = optional(map(object({
+      ultra_ssd_enabled   = string
+      hibernation_enabled = string
+    })), {})
+
+    boot_diagnostics = optional(map(object({
+      storage_account_uri = string
+    })), {})
+  }))
+
+
+}
+
+variable "nicdata" {
+  type = map(object({
+    name                = string
+    resource_group_name = string
+
+  }))
+}
+
+
 
 
 
