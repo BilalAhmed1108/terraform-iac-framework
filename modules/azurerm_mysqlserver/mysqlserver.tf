@@ -4,8 +4,8 @@ resource "azurerm_mssql_server" "sqlserver" {
   resource_group_name          = each.value.resource_group_name 
   location                     = each.value.location
   version                      = each.value.version
-  administrator_login          = data.azurerm_key_vault_secret.keyvaultsecret[each.value.sql_username].value
-  administrator_login_password = data.azurerm_key_vault_secret.keyvaultsecret[each.value.sql_password].value
+  administrator_login          = data.azurerm_key_vault_secret.keyvaultsecret["${each.value.name}username"].value 
+  administrator_login_password = data.azurerm_key_vault_secret.keyvaultsecret["${each.value.name}password"].value
   minimum_tls_version          = lookup(each.value, "minimum_tls_version", "1.2")
   administrator_login_password_wo = lookup(each.value, "administrator_login_password_wo", null)
   administrator_login_password_wo_version=lookup(each.value, "administrator_login_password_wo_version", null)
