@@ -459,8 +459,7 @@ vms = {
     size                            = "Standard_F2"
     disable_password_authentication = false
     computer_name                   = "frontendvm"
-    #vm_username                     = "virtual-machine-frontend-username"
-    #vm_password                     = "virtual-machine-frontend-password"
+    custom_data                     = "nginx.sh"
     nic_name                        = "frontend-nic"
         os_disk = {
       os1= {
@@ -469,9 +468,6 @@ vms = {
       }
      
     }
-
-
-
     source_image_reference = {
       s_i_r={
  publisher = "Canonical"
@@ -480,23 +476,15 @@ vms = {
       version   = "latest"
       }
     }
-
-
-
-
-
-
   }
 
   vmbackend = {
-    name                            = "bilalcorpfrontvm"
+    name                            = "bilalcorpbackvm"
     resource_group_name             = "BilalCorp-rg-1"
     location                        = "centralindia"
     size                            = "Standard_F2"
     disable_password_authentication = false
     computer_name                   = "backendvm"
-    #vm_username                     = "virtual-machine-backend-username"
-    #vm_password                     = "virtual-machine-backend-password"
     nic_name                        = "backend-nic"
     os_disk = {
       os1= {
