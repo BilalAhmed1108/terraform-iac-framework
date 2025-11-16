@@ -75,14 +75,14 @@ module "azurerm_database" {
 }
 
 
-# Calling Virtual machine module
+#Calling Virtual machine module
 
-# module "azurerm_virtual_machine" {
-#   depends_on = [module.azurerm_keyvault, module.azurerm_network, module.azurerm_public_ip]
-#   source     = "../../modules/azurerm_virtual_machines"
-#   vms        = var.vms
-#   nicdata    = var.nicdata
-#   keyvaultid = var.keyvaultid
-#   kvsec      = var.kvsec
-# }
+module "azurerm_virtual_machine" {
+  depends_on = [module.azurerm_keyvault, module.azurerm_network, module.azurerm_public_ip]
+  source     = "../../modules/azurerm_virtual_machines"
+  vms        = var.vms
+  nicdata    = var.nicdata
+  keyvaultid = var.keyvaultid
+  kvsec      = var.kvsec
+}
 

@@ -4,8 +4,8 @@ resource "azurerm_linux_virtual_machine" "vm" {
   resource_group_name = each.value.resource_group_name
   location            = each.value.location
   size                = each.value.size
-  admin_username      = data.azurerm_key_vault_secret.keyvaultsecret[each.value.vm_username].value
-  admin_password = data.azurerm_key_vault_secret.keyvaultsecret[each.value.userpassword].value      
+  admin_username      = data.azurerm_key_vault_secret.keyvaultsecret["${each.value.name}username"].value
+  admin_password = data.azurerm_key_vault_secret.keyvaultsecret["${each.value.name}password"].value      
   license_type= each.value.licence_type
   disable_password_authentication = lookup(each.value, "disable_password_authentication", false)
   allow_extension_operations =each.value.allow_extension_operations
@@ -13,7 +13,7 @@ resource "azurerm_linux_virtual_machine" "vm" {
   bypass_platform_safety_checks_on_user_schedule_enabled =each.value.bypass_platform_safety_checks_on_user_schedule_enabled
   capacity_reservation_group_id =each.value.capacity_reservation_group_id
   computer_name=each.value.computer_name
-  custom_data =each.value.custom_data
+  custom_data = lookup(each.value, "custom_data", null) != null ?  filebase64(each.value.custom_data) :  null
   dedicated_host_id=each.value.dedicated_host_id
   dedicated_host_group_id =each.value.dedicated_host_group_id
   disk_controller_type=each.value.disk_controller_type
@@ -21,8 +21,8 @@ resource "azurerm_linux_virtual_machine" "vm" {
   encryption_at_host_enabled=each.value.encryption_at_host_enabled
   eviction_policy =each.value.eviction_policy
   extensions_time_budget =each.value.extensions_time_budget
-  patch_assessment_mode=each.value.patch_assesment_mode
-  patch_mode =each.value.patch_mode
+  patch_assessment_mode=lookup(each.value, "patch_assessment_mode", null)
+  patch_mode =lookup(each.value, "patch_mode", null)
   max_bid_price =each.value.max_bid_price
  platform_fault_domain =each.value.platform_fault_domain
  priority=each.value.priority
@@ -77,7 +77,7 @@ resource "azurerm_linux_virtual_machine" "vm" {
 dynamic "boot_diagnostics" {
     for_each = lookup(each.value, "boot_diagnostics", {})
     content {
-     storage_account_uri = lookup(boot_diagnostics.value, "boot_diagnostics", null)
+     storage_account_uri = lookup(boot_diagnostics.value, "storage_account_uri", null)
     }
 }
 }
