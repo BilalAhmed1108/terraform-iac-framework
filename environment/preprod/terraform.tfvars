@@ -12,7 +12,7 @@ rgs = {
 
   rg2 = {
     name       = "BilalCorp-rg-2"
-    location   = "australiaeast"
+    location   = "North Europe"
     managed_by = "team devops"
     #   tags = {
     #         team_size = "4"
@@ -24,7 +24,7 @@ rgs = {
 # Storage variable values
 stgs = {
   stg1 = {
-    name                     = "bilalcorpstg1"
+    name                     = "bilalcorpstg11"
     account_tier             = "Standard"
     account_replication_type = "LRS"
     kind                     = "StorageV2"
@@ -80,7 +80,7 @@ stgs = {
   }
 
   stg2 = {
-    name                     = "bilalcorpstg2"
+    name                     = "bilalcorpstg22"
     account_tier             = "Standard"
     account_replication_type = "LRS"
     rg_key                   = "rg1"
@@ -461,19 +461,19 @@ vms = {
     computer_name                   = "frontendvm"
     custom_data                     = "nginx.sh"
     nic_name                        = "frontend-nic"
-        os_disk = {
-      os1= {
-      caching              = "ReadWrite"
-      storage_account_type = "Standard_LRS"
+    os_disk = {
+      os1 = {
+        caching              = "ReadWrite"
+        storage_account_type = "Standard_LRS"
       }
-     
+
     }
     source_image_reference = {
-      s_i_r={
- publisher = "Canonical"
-      offer     = "0001-com-ubuntu-server-focal"
-      sku       = "20_04-lts"
-      version   = "latest"
+      s_i_r = {
+        publisher = "Canonical"
+        offer     = "0001-com-ubuntu-server-focal"
+        sku       = "20_04-lts"
+        version   = "latest"
       }
     }
   }
@@ -485,36 +485,28 @@ vms = {
     size                            = "Standard_F2"
     disable_password_authentication = false
     computer_name                   = "backendvm"
+     custom_data                     = "python.sh"  
     nic_name                        = "backend-nic"
     os_disk = {
-      os1= {
-      caching              = "ReadWrite"
-      storage_account_type = "Standard_LRS"
+      os1 = {
+        caching              = "ReadWrite"
+        storage_account_type = "Standard_LRS"
       }
-     
+
     }
 
 
 
     source_image_reference = {
-      s_i_r={
- publisher = "Canonical"
-      offer     = "0001-com-ubuntu-server-focal"
-      sku       = "20_04-lts"
-      version   = "latest"
+      s_i_r = {
+        publisher = "Canonical"
+        offer     = "0001-com-ubuntu-server-focal"
+        sku       = "20_04-lts"
+        version   = "latest"
       }
-     
+
     }
-
-
-
-
-
-
   }
-
-
-
 }
 
 
@@ -529,6 +521,39 @@ nicdata = {
     resource_group_name = "BilalCorp-rg-1"
   }
 
+}
+
+# AKS variable values
+akc = {
+  akscluster1 = {
+    name                = "bilalcorpaks"
+    location            = "North Europe"
+    resource_group_name = "BilalCorp-rg-2"
+    dns_prefix          = "bilalcorpaks"
+    kubernetes_version  = "1.32.9"
+    node_resource_group = "Kube-node-RG"
+    default_node_pool = {
+       
+        name            = "agentpool"
+        node_count      = 1
+        vm_size         = "Standard_L2aos_v4"
+        os_disk_size_gb = 30
+        os_sku          = "Ubuntu"
+        type            = "VirtualMachineScaleSets"
+        mode            = "System"
+      
+    }
+    tags = {
+      team_size = "4"
+      team_lead = "Mr. X"
+    }
+    identity = {
+      
+        type         = "SystemAssigned"
+        identity_ids = []
+      
+    }
+  }
 }
 
 

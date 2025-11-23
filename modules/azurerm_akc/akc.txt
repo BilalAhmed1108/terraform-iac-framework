@@ -1,0 +1,19 @@
+resource "azurerm_kubernetes_cluster" "aks" {
+  name                = "myaks"
+  location            = "North Europe"
+  resource_group_name = "RG-backend"
+  dns_prefix          = "hellomoto"
+
+  default_node_pool {
+    name       = "default"
+    node_count = 1
+    vm_size    = "Standard_L2aos_v4"
+  }
+    identity {
+    type = "SystemAssigned"
+  }
+
+
+
+
+}
