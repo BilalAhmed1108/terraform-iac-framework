@@ -86,3 +86,17 @@ module "azurerm_virtual_machine" {
   kvsec      = var.kvsec
 }
 
+#Calling Kubernetes Cluster module  
+module "azurerm_akc" {
+  depends_on = [module.azurerm_resource_group, module.azurerm_network]
+  source     = "../../modules/azurerm_akc"
+  akc       = var.akc
+}
+
+
+# Calling Container Registry module
+
+module "azurerm_acr" {
+  depends_on = [ module.azurerm_akc]
+  source     = "../../modules/azurerm_acr"
+}
