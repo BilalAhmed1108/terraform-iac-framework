@@ -16,10 +16,10 @@ terraform {
 
 provider "azurerm" {
   features {}
-  subscription_id = "c4392c89-177c-49fd-abc6-1b1d293e65b7"
-  # client_id       = ###""###
-  # client_secret   = ###""
-  # tenant_id       = ###""
+  subscription_id = "***"
+  client_id       = "***"
+  client_secret   = "***"
+  tenant_id       = "***"
 
 
 }

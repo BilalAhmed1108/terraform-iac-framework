@@ -96,7 +96,8 @@ module "azurerm_akc" {
 
 # Calling Container Registry module
 
-module "azurerm_acr" {
+module "azurerm_akr" {
   depends_on = [ module.azurerm_akc]
-  source     = "../../modules/azurerm_acr"
+  source     = "../../modules/azurerm_akr"
+  akr = var.akr
 }
