@@ -556,6 +556,21 @@ akc = {
   }
 }
 
+# ACR variable values
+akr = {
+  akr1 = {
+    name                = "BilalCorpRegistry"
+    resource_group_name = "BilalCorp-rg-1"
+    location            = "centralindia"
+    sku                 = "Standard"
+    admin_enabled       = true
+    tags = {
+      team_size = "4"
+      team_lead = "Mr. X"
+    }
+  }
+}
+
 
 
 
