@@ -48,7 +48,7 @@ resource "azurerm_kubernetes_cluster" "akc" {
       node_public_ip_prefix_id      = lookup(each.value, "node_public_ip_prefix_id", null)      #optional
       #node_labels ="" #optional
       only_critical_addons_enabled = lookup(each.value, "only_critical_addons_enabled", false) #optional
-      orchestrator_version         = lookup(each.value, "orchestrator_version", "1.27.7")      #optional
+      orchestrator_version         = lookup(each.value, "orchestrator_version", "1.32.9")      #optional
       os_disk_size_gb              = lookup(each.value, "os_disk_size_gb", 30)                 #optional
       os_disk_type                 = lookup(each.value, "os_disk_type", "Managed")             # optional
       os_sku                       = lookup(each.value, "os_sku", "Ubuntu")                    #optional
